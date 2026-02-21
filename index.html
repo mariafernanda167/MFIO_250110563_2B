@@ -1,415 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablas de Frecuencia y Gráficas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tablas de Frecuencia y Gráficas</title>
+
 <style>
-    * {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        color: #334155; 
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0;
-        box-sizing: border-box;
-    }
+*{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    line-height:1.6;
+    color:#334155;
+    max-width:900px;
+    margin:0 auto;
+    box-sizing:border-box;
+}
 
-    body {
-        background-color: #f8fafc; 
-        padding: 20px;
-    }
+body{
+    background-color:#f8fafc;
+    padding:20px;
+}
 
-    h1 {
-        text-align: center;
-        color: #475569; 
-    }
+h1{text-align:center;color:#475569;}
 
-    h2 {
-        border-left: 5px solid #5ba4a4; 
-        padding-left: 10px;
-        color: #556b7d;
-        margin-top: 40px;
-    }
+h2{
+    border-left:5px solid #5ba4a4;
+    padding-left:10px;
+    color:#556b7d;
+    margin-top:40px;
+}
 
-    h3 {
-        color: #64748b;
-        text-align: center;
-        margin-bottom: 10px;
-        font-size: 16px;
-    }
+h3{
+    color:#64748b;
+    text-align:center;
+    font-size:16px;
+}
 
-    .card {
-        background: #ffffff;
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-        margin-bottom: 40px;
-    }
-    table {
-        width: 100%;
-        margin: 20px 0;
-        border-collapse: collapse; 
-        border: 1px solid #e2e8f0;
-    }
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 2px 15px rgba(0,0,0,0.05);
+    margin-bottom:40px;
+}
 
-    table th, table td {
-        padding: 12px 15px;
-        border: 1px solid #adc1d4; 
-    }
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+}
 
-    table th {
-        background-color: #a8a6a6 ; 
-        color: #dbdfe3 ;
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-        background-color: #f9fafb; 
-    }
-    table tr:hover {
-        background-color: inherit; 
-    }
+th,td{
+    border:1px solid #adc1d4;
+    padding:12px;
+    text-align:center;
+}
 
-    .total {
-        background-color: #dbdfe3 !important;
-        font-weight: bold;
-    }
+th{
+    background:#a8a6a6;
+    color:#dbdfe3;
+}
 
-    <style>
-<style>
-    .graficas-contenedor {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
-        width: 100%;
-    }
+.graficas-contenedor{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;
+}
 
-    .grafica-item {
-        background: #ffffff;
-        padding: 15px;
-        border-radius: 6px;
-        border: 1px solid #e2e8f0;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.grafica-item{
+    border:1px solid #e2e8f0;
+    padding:15px;
+    text-align:center;
+    border-radius:6px;
+}
 
-    .grafica-item h3 {
-        color: #78909c;
-        margin-bottom: 12px;
-        font-size: 15px;
-    }
-
-    .grafica-item img {
-        width: 100%;
-        height: 200px;
-        object-fit: contain;
-        border: none;
-        filter: saturate(0.7);
-    }
-
-    .grafica-item:nth-child(1) { border-top: 4px solid #a8dadc; }
-    .grafica-item:nth-child(2) { border-top: 4px solid #b7b7a4; }
-    .grafica-item:nth-child(3) { border-top: 4px solid #dec0b1; }
+.grafica-item img{
+    width:100%;
+    height:200px;
+    object-fit:contain;
+}
 </style>
 </head>
+
 <body>
-    <h1>Tablas de Frecuencia y Gráficas</h1>
-        
-        <H2>Datos Recolectados (n=100)</H2>
- 
-<P>1-10: Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho.</p>
-<P>11-20: Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho.</p>
-<P>21-30: Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho.</p>
-<P>31-40: Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho.</p>
-<P>41-50: Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho.</p>
-<P>51-60: Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho.</p>
-<P>61-70: Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho.</p>
-<P>71-75: Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho.</p>
-<P>76-85: Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral.</p>
-<P>86-90: Neutral, Neutral, Neutral, Neutral, Neutral.</p>
-<P>91-100: Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho.</P>
 
-    <div class="card">
-        <h2>1. Variable Cualitativa: Nivel de Satisfacción</h2>
-        <p> En el Instituto Tecnologico Dhay diferentes acividades complementarias,
-        futboll, VEX, ajedrez y cursos, se hizo una encuesta ah diferentes
-        estudiantes a lo largo de el campus y se les pregunto que tan 
-        satisfechos estan con su complementarias y de acuerdo a sus respuestas
-        estos fueron los datos recolectados</p>
-        <table>
-            <thead>
-                <tr>
-                    <tr>
-                    <th>Clase</th>
-                    <th>Frecuencia Absoluta (fi)</th>
-                    <th>Frecuencia Relativa (hi)</th>
-                    <th>Frecuencia Acumulada (Fi)</th>
-                    </tr>
+<h1>Tablas de Frecuencia y Gráficas</h1>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <tr>
-    <td>Muy satisfecho</td>
-    <td>40</td>
-    <td>0.40</td>
-    <td>40</td>
-</tr>
+<div class="card">
+<h2>1. Variable Cuantitativa Discreta: Faltas al Mes</h2>
+
+<p>¿Cuántas veces faltas a tus clases? Esto fue lo que se pregunto a estudiantes 
+        de el bachillerato cbtis 83  muchos de los estudiantes 
+        dieron respuestas muy similares</p>
+
+<h3>Datos recolectados (n = 100)</h3>
+<p>0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+3,3,3,3,3</p>
+
+<table>
+<thead>
 <tr>
-    <td>Satisfecho</td>
-    <td>35</td>
-    <td>0.35</td>
-    <td>75</td>
+<th>Clase</th><th>fi</th><th>hi</th><th>Hi</th>
 </tr>
-<tr>
-    <td>Neutral</td>
-    <td>15</td>
-    <td>0.15</td>
-    <td>90</td>
-</tr>
-<tr>
-    <td>Insatisfecho</td>
-    <td>10</td>
-    <td>0.10</td>
-    <td>100</td>
-</tr>
-<tr class="total">
-    <td>Total</td>
-    <td>100</td>
-    <td>1.00</td>
-    <td>100</td>
-</tr>
+</thead>
+<tbody>
+<tr><td>0</td><td>50</td><td>0.50</td><td>0.50</td></tr>
+<tr><td>1</td><td>30</td><td>0.30</td><td>0.80</td></tr>
+<tr><td>2</td><td>15</td><td>0.15</td><td>0.95</td></tr>
+<tr><td>3</td><td>5</td><td>0.05</td><td>1.00</td></tr>
+</tbody>
+</table>
+<div class="graficas-contenedor">
+            <div class="grafica-item">
+                <h3>2.1 - Evolución de Inasistencias</h3>
+                <img src="imagenes/imagenes_tabla3_ojiva_frecuencia_acumulada (1).png" alt="Gráfica ojiva de faltas">
+            </div>
+            <div class="grafica-item">
+                <h3>2.2 - Histograma de Faltas</h3>
+                <img src="imagenes/imagenes_tabla3_histograma_frecuencia_relativa.png" alt="Histograma de faltas">
+            </div>
+            <div class="grafica-item">
+                <h3>2.3 - Barras Horizontales de Faltas</h3>
+                <img src="imagenes/imagenes_tabla3_barras_frecuencia_absoluta.png" alt="Barras horizontales de faltas">
+            </div>
+            <div class="grafica-item">
+                <h3>2.4 - Distribución de Faltas (%)</h3>
+                <img src="imagenes/imagenes_tabla3_pastel_frecuencia_relativa.png" alt="Diagrama de pastel de faltas">
+            </div>
+            <div class="grafica-item">
+                <h3>2.5 - Polígono de Frecuencias</h3>
+                <img src="imagenes/imagenes_tabla3_poligono_frecuencia_relativa (1).png" alt="Polígono de frecuencias de faltas">
+            </div>
+</div>
 
-                </tr>
-            </tbody>
-        </table>
+<div class="card">
+<h2>2. Variable Cuantitativa Continua: Peso en kg</h2>
 
-        <div class="graficas">
-            <div class="grafica-item">
-                <h3>1.1 - Evolución de Satisfacción</h3>
-                <img src="imagenes/imagen_tabla1_ojiva_frecuencia_acumulada.png" alt="Gráfica ojiva de satisfacción">
-            </div>
-            <div class="grafica-item">
-                <h3>1.2 - Histograma de Satisfacción</h3>
-                <img src="imagenes/imagen_tabla1_histograma_frecuencia_relativa.png" alt="Histograma de satisfacción">
-            </div>
-            <div class="grafica-item">
-                <h3>1.3 - Barras Horizontales de Satisfacción</h3>
-                <img src="imagenes/imagen_tabla1_barras_frecuencia_absoluta.png" alt="Barras horizontales de satisfacción">
-            </div>
-            <div class="grafica-item">
-                <h3>1.4 - Distribución de Satisfacción (%)</h3>
-                <img src="imagenes/imagen_tabla1_pastel_frecuencia_relativa.png" alt="Diagrama de pastel de satisfacción">
-            </div>
-            <div class="grafica-item">
-                <h3>1.5 - Polígono de Frecuencias</h3>
-                <img src="imagenes/imagen_tabla1_poligono_frecuencia_relativa.png" alt="Polígono de frecuencias de satisfacción">
-            </div>
-        </div>
-    </div>
+<p>En un gimnasio de Actopan se pesó a los clientes para observar la distribución del peso.</p>
 
-    <div class="card">
-        <h2>2. Variable Cuantitativa Continua: Peso en kg</h2>
-
-        <h2>Datos Recolectados (n=100) </h2>
-        <p>55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55,
+<h3>Datos recolectados (n = 100)</h3>
+<p>55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55, 55,
              65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65,
               65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65,
                65, 65, 65, 65, 65, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 
                75, 75, 75, 75, 75, 75, 75, 75, 75, 75, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85</p>
 
-
-<div class="card">
-
-        <p>En un gym cerca del centro de actopan, se hizo la dinamica de pesar a todos clientes del gimnasio 
-            para ver la variedad de los  clientes 
-        y a los que solo se van a tomar fotos (yo)</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Clase</th>
-                    <th>Límite inferior</th>
-                    <th>Límite superior</th>
-                    <th>Marca de clase</th>
-                    <th>Frecuencia absoluta</th>
-                    <th>Frecuencia relativa</th>
-                    <th>Frecuencia acumulada</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <tr>
-    <td>[50-60)</td>
-    <td>50</td>
-    <td>60</td>
-    <td>55</td>
-    <td>20</td>
-    <td>0.20</td>
-    <td>20</td>
-</tr>
+<table>
+<thead>
 <tr>
-    <td>[60-70)</td>
-    <td>60</td>
-    <td>70</td>
-    <td>65</td>
-    <td>45</td>
-    <td>0.45</td>
-    <td>65</td>
+<th>Clase</th><th>Li</th><th>Ls</th><th>Marca</th><th>fi</th><th>hi</th><th>Hi</th>
 </tr>
-<tr>
-    <td>[70-80)</td>
-    <td>70</td>
-    <td>80</td>
-    <td>75</td>
-    <td>25</td>
-    <td>0.25</td>
-    <td>90</td>
-</tr>
-<tr>
-    <td>[80-90]</td>
-    <td>80</td>
-    <td>90</td>
-    <td>85</td>
-    <td>10</td>
-    <td>0.10</td>
-    <td>100</td>
-</tr>
-<tr class="total">
-    <td>Total</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>100</td>
-    <td>1.00</td>
-    <td>-</td>
-</tr>
-
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="graficas-contenedor">
+</thead>
+<tbody>
+<tr><td>[50–60)</td><td>50</td><td>60</td><td>55</td><td>20</td><td>0.20</td><td>0.20</td></tr>
+<tr><td>[60–70)</td><td>60</td><td>70</td><td>65</td><td>45</td><td>0.45</td><td>0.65</td></tr>
+<tr><td>[70–80)</td><td>70</td><td>80</td><td>75</td><td>25</td><td>0.25</td><td>0.90</td></tr>
+<tr><td>[80–90]</td><td>80</td><td>90</td><td>85</td><td>10</td><td>0.10</td><td>1.00</td></tr>
+</tbody>
+</table>
+<div class="graficas-contenedor">
             <div class="grafica-item">
                 <h3>3.1 - Evolución de Peso</h3>
-                <img src="imagenes/imagen_tabla2_ojiva_frecuencia_acumulada.png" alt="ojiva de peso">
+                <img src="imagenes/imagenes_tabla2_ojiva_frecuencia_acumulada (1).png" alt="ojiva de peso">
             </div>
             <div class="grafica-item">
                 <h3>3.2 - Histograma de Peso</h3>
-                <img src="imagenes/imagen_tabla2_histograma_frecuencia_relativa.png" alt="Histograma de peso">
+                <img src="imagenes/imagenes_tabla2_histograma_frecuencia_relativa.png" alt="Histograma de peso">
             </div>
             <div class="grafica-item">
                 <h3>3.3 - Barras Horizontales de Peso</h3>
-                <img src="imagenes/imagen_tabla2_barras_frecuencia_absoluta.png" alt="Barras horizontales de peso">
+                <img src="imagenes/imagenes_tabla2_barras_frecuencia_absoluta.png" alt="Barras horizontales de peso">
             </div>
             <div class="grafica-item">
                 <h3>3.4 - Distribución de Peso (%)</h3>
-                <img src="imagenes/imagen_tabla2_pastel_frecuencia_relativa.png" alt="Diagrama de pastel de peso">
+                <img src="imagenes/imagenes_tabla2_pastel_frecuencia_relativa (1).png" alt="Diagrama de pastel de peso">
             </div>
             <div class="grafica-item">
                 <h3>3.5 - Polígono de Frecuencias</h3>
-                <img src="imagenes/imagen_tabla2_poligono_frecuencia_relativa.png" alt="Polígono de frecuencias de peso">
+                <img src="imagenes/imagenes_tabla2_poligono_frecuencia_relativa (1).png" alt="Polígono de frecuencias de peso">
         
             </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>3. Variable Cuantitativa Discreta: Faltas al Mes</h2>
-
-        <h2>Datos Recolectados (n=0)</h2>
-        <p>0 faltas (50 alumnos):
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0. </Pp>
-<p>(1 falta 30 alumnos):
-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.</Pp>
- <p>(2 faltas 15 alumnos):
-2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2.</Pp>
-<p>(3 faltas 5 alumnos):
-3, 3, 3, 3, 3.</p>
+</div>
 
 <div class="card">
+<h2>3. Variable Cualitativa: Nivel de Satisfacción</h2>
 
-        <p>¿ Cuantas veces faltas a tus clases? 
-             Esto fue lo que se pregunto a estudiantes 
-        de el bachillerato cbtis 83  muchos de los estudiantes 
-        dieron respuestas muy similares </p>
-        <table>
-            <thead>
-                <tr>
-                    <tr>
-                    <th>Clase</th>
-                    <th>Frecuencia Absoluta (fi)</th>
-                    <th>Frecuencia Relativa (hi)</th>
-                    <th>Frecuencia Acumulada (Fi)</th>
+<p>En el Instituto Tecnologico Dhay diferentes acividades complementarias,
+        futboll, VEX, ajedrez y cursos, se hizo una encuesta ah diferentes
+        estudiantes a lo largo de el campus y se les pregunto que tan 
+        satisfechos estan con su complementarias y de acuerdo a sus respuestas
+        estos fueron los datos recolectados.</p>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <tr>
-    <td>0</td>
-    <td>50</td>
-    <td>0.50</td>
-    <td>50</td>
-</tr>
+<h3>Datos recolectados (n = 100)</h3>
+<p>Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho,
+ Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho,
+ Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho,
+ Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho, Muy satisfecho,
+ Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho,
+ Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho,
+ Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho,
+ Satisfecho, Satisfecho, Satisfecho, Satisfecho, Satisfecho,
+ Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral, Neutral,
+ Neutral, Neutral, Neutral, Neutral, Neutral,
+Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho, Insatisfecho.</p>
+
+<table>
+<thead>
 <tr>
-    <td>1</td>
-    <td>30</td>
-    <td>0.30</td>
-    <td>80</td>
+<th>Clase</th><th>fi</th><th>hi</th><th>Hi</th>
 </tr>
-<tr>
-    <td>2</td>
-    <td>15</td>
-    <td>0.15</td>
-    <td>95</td>
-</tr>
-<tr>
-    <td>3</td>
-    <td>5</td>
-    <td>0.05</td>
-    <td>100</td>
-</tr>
-<tr class="total">
-    <td>Total</td>
-    <td>100</td>
-    <td>1.00</td>
-    <td>100</td>
-</tr>
+</thead>
+<tbody>
+<tr><td>Muy satisfecho</td><td>40</td><td>0.40</td><td>0.40</td></tr>
+<tr><td>Satisfecho</td><td>35</td><td>0.35</td><td>0.75</td></tr>
+<tr><td>Neutral</td><td>15</td><td>0.15</td><td>0.90</td></tr>
+<tr><td>Insatisfecho</td><td>10</td><td>0.10</td><td>1.00</td></tr>
+</tbody>
+</table>
 
-                </tr>
-            </tbody>
-        </table>
+<div class="graficas">
+            <div class="grafica-item">
+                <h3>1.1 - Evolución de Satisfacción</h3>
+                <img src="imagenes/imagenes_tabla1_ojiva_frecuencia_acumulada (1).png" alt="Gráfica ojiva de satisfacción">
+            </div>
+            <div class="grafica-item">
+                <h3>1.2 - Histograma de Satisfacción</h3>
+                <img src="imagenes/imagenes_tabla1_histograma_frecuencia_relativa.png" alt="Histograma de satisfacción">
+            </div>
+            <div class="grafica-item">
+                <h3>1.3 - Barras Horizontales de Satisfacción</h3>
+                <img src="imagenes/imagenes_tabla1_barras_frecuencia_absoluta.png" alt="Barras horizontales de satisfacción">
+            </div>
+            <div class="grafica-item">
+                <h3>1.4 - Distribución de Satisfacción (%)</h3>
+                <img src="imagenes/imagenes_tabla1_pastel_frecuencia_relativa (1).png" alt="Diagrama de pastel de satisfacción">
+            </div>
+            <div class="grafica-item">
+                <h3>1.5 - Polígono de Frecuencias</h3>
+                <img src="imagenes/imagenes_tabla1_poligono_frecuencia_relativa (1).png" alt="Polígono de frecuencias de satisfacción">
+            </div>
 
-        <div class="graficas-contenedor">
-            <div class="grafica-item">
-                <h3>2.1 - Evolución de Inasistencias</h3>
-                <img src="imagenes/imagen_tabla3_ojiva_frecuencia_acumulada.png" alt="Gráfica ojiva de faltas">
-            </div>
-            <div class="grafica-item">
-                <h3>2.2 - Histograma de Faltas</h3>
-                <img src="imagenes/imagen_tabla3_histograma_frecuencia_relativa.png" alt="Histograma de faltas">
-            </div>
-            <div class="grafica-item">
-                <h3>2.3 - Barras Horizontales de Faltas</h3>
-                <img src="imagenes/imagen_tabla3_barras_frecuencia_absoluta.png" alt="Barras horizontales de faltas">
-            </div>
-            <div class="grafica-item">
-                <h3>2.4 - Distribución de Faltas (%)</h3>
-                <img src="imagenes/imagen_tabla3_pastel_frecuencia_relativa.png" alt="Diagrama de pastel de faltas">
-            </div>
-            <div class="grafica-item">
-                <h3>2.5 - Polígono de Frecuencias</h3>
-                <img src="imagenes/imagen_tabla3_poligono_frecuencia_relativa.png" alt="Polígono de frecuencias de faltas">
-            </div>
-        </div>
-    </div>
+
 
 </body>
 </html>
